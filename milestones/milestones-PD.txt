@@ -1,0 +1,35 @@
+Time log:
+    4:30-6:30 Saturday, 9/28: Set up git repo to connect to 
+    virtual environment in Anaconda. Researched what libraries
+    to use for a machine learning model involving image classification,
+    and set up directories. Downloaded dataset off of kaggle. 
+    Most of this time was spent resolving virtual environment/GitHub issues.
+
+    3:15-6:15 Sunday, 9/29: Using Jupyter notebook, read in data from
+    local directories (after it was downloaded) and read it into a 
+    Pandas DataFrame. Realized that Pandas DataFrames do not support image loading,
+    so switched to numpy arrays. However, the dataset was too large to load
+    all at once, so used a keras function to batch the data.
+
+    Link to repository: https://github.com/colsenmurray/GestureCar/tree/pd-branch
+    (pd-branch is my branch, the compilable task is the Jupyter notebook)
+
+
+Rubric: (40 total)
++15 points: demonstrated car functionality that corresponds with hand gestures. The program is correctly
+able to distinguish between different commands and control the car accordingly. 
++10 points: Web application also functions as intended (displays current command, live updates with sockets implemented correctly, etc).
++5 points: time tracking (time adds up and assigned tasks match the logs)
++5 points: git repo link with clear instructions in the README on how to run the program
++5 points: code is well commented and formatted
+
+
+Report:
+    This challenge went fairly well, mostly due to the many online resources involving
+    getting started with an image classification program. The main setback was trying
+    to find a data loader. Although keras had one, the function I kept finding online was outdated.
+    After going to their current documentation, I was able to find keras.utils.image_dataset_from_directory(),
+    which works perfectly. Next steps will be researching how to create layers of a model,
+    and beginning to integrate that with the data loader to begin training. After that model is
+    ready and validated, I'm thinking about stripping back a layer of abstraction and creating
+    my own TensorFlow model instead of relying on the Keras API.
