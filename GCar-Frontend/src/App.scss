@@ -1,0 +1,52 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+
+.MainCont{
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 2em);
+  width: calc(100vw - 2em);
+  gap: 1em;
+  margin: 1em;
+}
+
+.FirstRow{
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  height: 100%;
+  margin: 1em 1em 1em 0;
+}
+
+.SecondRow{
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  height: 100%;
+  margin: 1em;
+}
+
+#IMUInfo{
+  width: 25%;
+}
+
+#CurrentInstructions{
+}
+
+#Controls{
+}
+
+#DataStream{
+}
+
+#VideoStream{
+}
+
+#FrameDiagnostic{
+  width: 25%;
+}
