@@ -3,6 +3,8 @@
 4 hr (4:30-8:30) 9/30/24   -    Programmed image input and basic manipulation. This time also included research into OpenCV 
                                 and Pillow for image manipulation in Python as well as setting up my environment for python coding on Jupyter.
 
+The git repo is at: https://github.com/colsenmurray/GestureCar
+
 My section of this challenge is found in the Image-Capture branch, under the image_input directory. My compilable task is "takePicture.ipynb".
 
 Rubric: (40 total)
