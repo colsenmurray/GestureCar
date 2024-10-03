@@ -1,7 +1,20 @@
-@import './../../src/Colors';
+@import '../../Utils/Variables';
 .CardCont{
     background-color: $primaryColor;
-    border-radius: .5em;
+    border-radius: 1em;
     width: 100%;
+    box-shadow: $shadow, $highlight;
+}
 
+.Title{
+    color: $textColor;
+    font-size: $titleText;
+    font-weight: bold;
+    margin: 1em;
+    text-shadow: 0px 0px 10px 0px $tertiaryColor;
+    background-color: $secondaryColor;
+    border-radius: .5em;
+    padding: .25em 0;
+    margin: .5em;
+    // filter: drop-shadow(0px 0px 10px $tertiaryColor);
 }
