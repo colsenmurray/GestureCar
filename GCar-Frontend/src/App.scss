@@ -8,31 +8,43 @@
 
 .MainCont{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: calc(100vh - 2em);
   width: calc(100vw - 2em);
-  gap: 1em;
+  gap: .5em;
   margin: 1em;
 }
 
-.FirstRow{
+.FirstColumn{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 1em;
-  height: 100%;
-  margin: 1em 1em 1em 0;
+  margin: .5em;
+  width: 100%;
 }
 
-.SecondRow{
+.SecondColumn{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: .5em;
+  width: 100%;
+}
+
+.FrameDataCont{
   display: flex;
   flex-direction: row;
-  gap: 1em;
-  height: 100%;
-  margin: 1em;
+  height: 50%;
+}
+
+.InstructControlsCont{
+  display: flex;
+  flex-direction: row;  gap: 1em;
+  height: 45%;
 }
 
 #IMUInfo{
-  width: 30%;
+  height: 65%;
 }
 
 #CurrentInstructions{
@@ -42,11 +54,13 @@
 }
 
 #DataStream{
+  width: 60%;
 }
 
 #VideoStream{
+  height: 50%;
 }
 
 #FrameDiagnostic{
-  width: 30%;
+  width: 40%;
 }
