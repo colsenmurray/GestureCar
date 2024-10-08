@@ -1,0 +1,27 @@
+Time log:
+    11:00 - 1:00 Friday, 9/27: I created the Vite React project and research other libraies to
+    use for the frontend. I decided to imporporate SASS, framer motion, possibly d3.js to this project to
+    make the front end look professional.
+
+    2:00-4:00 Saturday, 9/28: I started researching how I wanted to design my control panel. So I looked 
+    up "control panel dashboard ui ux" and found some great inspiration. I took 4 designs I liked and started to create a 
+    Figma to designed the fornt end. I spent a large amount of time deciding and design how I wanted my front end to look in 
+    Figma so I don't waste any time while I am developing.
+
+    
+
+Rubric: (40 total)
++15 points: demonstrated car functionality that corresponds with hand gestures. The program is correctly
+able to distinguish between different commands and control the car accordingly. 
++10 points: Web application also functions as intended (displays current command, live updates with sockets implemented correctly, etc).
++5 points: time tracking (time adds up and assigned tasks match the logs)
++5 points: git repo link with clear instructions in the README on how to run the program
++5 points: code is well commented and formatted
+
+
+Report:
+    I think this challenge went well. I was able to get a foundation for how I wanted to structure my front end 
+    and what elements I wanted to include or leave out. I hope to round out my stack during this project and really 
+    incorporate important design concepts to bring my experience to an intermediate level. My next step will be to 
+    get started on the front end and get a good sense of what the front-end will look like. I want to completely 
+    finish my Figma design and iron out all of the details. 

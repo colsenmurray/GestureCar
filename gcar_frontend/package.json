@@ -1,3 +1,4 @@
+<<<<<<< HEAD:gcar_frontend/package.json
 {
   "name": "gcar-frontend",
   "private": true,
@@ -28,3 +29,36 @@
     "vite": "^5.4.1"
   }
 }
+=======
+{
+  "name": "gcar-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "framer-motion": "^11.5.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.12.7",
+    "sass": "^1.79.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^9.9.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "globals": "^15.9.0",
+    "vite": "^5.4.1"
+  }
+}
+>>>>>>> 486c1b67e0bd7aabfa5fa9068a0925b4d6cad4fe:GCar-Frontend/package.json
