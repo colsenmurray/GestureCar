@@ -19,3 +19,45 @@
     border-bottom: 2px solid $tertiaryColor;
     width: 0%;
 }
+
+.MainCont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    margin: 0.5em 0;
+    height: 75%;
+}
+
+.GestureCont{
+    background-color: $secondaryColor;
+    border-radius: .5em;
+    width: 80%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+}
+
+.GestureTitle{
+    margin: 1em;
+}
+
+.InstructCont{
+    background-color: $secondaryColor;
+    border-radius: .5em;
+    width: 80%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Img{
+    height: 100%;
+    border-radius: .5em;
+    margin: 0;
+    padding: 0;
+}
+

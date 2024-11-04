@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useState, useEffect } from 'react'
 import viteLogo from '/vite.svg'
 import './App.scss'
 import VideoStream from '../Components/VideoStream/VideoStream'
@@ -9,9 +8,24 @@ import Controls from '../Components/Card/Controls/Controls'
 import IMUInfo from '../Components/Card/IMUInfo/IMUInfo'
 import DataStream from '../Components/Card/DataStream/DataStream'
 import Instruction from '../Components/Card/Instruction/Instruction'
+import socketService from '../Utils/Api.js'
 
 function App() {
+  const [rawData, setRawData] = useState(null);
 
+  useEffect(() => {
+    socketService.connect();
+
+    socketService.on("dataPacket", (data) => {
+      console.log("Received data packet: ", data);
+      setRawData(data);
+    });
+
+    return () =>{
+      socketService.disconnect();
+    }
+  }, []);
+  
   return (
     <div className="MainCont">
       <div className="FirstColumn">

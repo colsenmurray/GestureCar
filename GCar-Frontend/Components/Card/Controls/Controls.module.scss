@@ -19,3 +19,51 @@
     border-bottom: 2px solid $tertiaryColor;
     width: 0%;
 }
+
+.MainCont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75%;
+    gap: 1em;
+}
+
+.SpeedCard{
+    height: 40%;
+    width: 80%;
+    background-color: $secondaryColor;
+    border-radius: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.SteeringCard{
+    height: 40%;
+    width: 80%;
+    background-color: $secondaryColor;
+    border-radius: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Slider{
+    width: 65%;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 50%;
+    background: $tertiaryColor;
+    border-radius: 1em;
+}
+input[type="range"]::-webkit-slider-thumb {
+    cursor: pointer;
+    position: relative; 
+    background-color: red;
+    top: -50%; /* Align the thumb vertically */
+
+}
+

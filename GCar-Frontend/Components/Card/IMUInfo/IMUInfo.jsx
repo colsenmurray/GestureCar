@@ -1,13 +1,22 @@
 import styles from "./IMUInfo.module.scss";
-import { motion } from 'framer-motion'
-
+import { motion, useAnimate } from 'framer-motion'
+import { useEffect } from "react";
 function IMUInfo({ className, id}) {
+    const [scope, animate] = useAnimate()
+    useEffect(() =>{
+        const animation = async () => {
+            await animate(scope.current, { opacity: 1, y: 0 }, { delay: 1 * 0.2 , ease: "easeInOut", duration: .75 })
+          }
+          
+          animation()
+    },[])
 
     return (
         <motion.div className={`${styles.CardCont}`} id={id}
             initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2 * 0.2 , ease: "easeInOut", duration: .75 }}>
+            ref={scope}
+            whileHover={{ scale: 1.01 , transition: { duration: .1, ease:"linear" } }}
+>
             <motion.div className={`${styles.Title}`}
             initial={{ filter: "drop-shadow(0px 0px 10px $tertiary)" }}>
                 IMU Info
