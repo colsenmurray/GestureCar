@@ -15,7 +15,6 @@ function IMUInfo({ className, id}) {
         <motion.div className={`${styles.CardCont}`} id={id}
             initial={{ opacity: 0, y: 50 }}
             ref={scope}
-            whileHover={{ scale: 1.01 , transition: { duration: .1, ease:"linear" } }}
 >
             <motion.div className={`${styles.Title}`}
             initial={{ filter: "drop-shadow(0px 0px 10px $tertiary)" }}>

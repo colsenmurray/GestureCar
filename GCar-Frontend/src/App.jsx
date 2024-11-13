@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext} from 'react'
 import viteLogo from '/vite.svg'
 import './App.scss'
 import VideoStream from '../Components/VideoStream/VideoStream'
@@ -10,40 +10,56 @@ import DataStream from '../Components/Card/DataStream/DataStream'
 import Instruction from '../Components/Card/Instruction/Instruction'
 import socketService from '../Utils/Api.js'
 
+export const rawIncomingDataContext = createContext();
+export const rawOutgoingDataContext = createContext();
+
+
 function App() {
-  const [rawData, setRawData] = useState(null);
+  const [rawIncomingData, setRawIncomingData] = useState(null);
+  const [rawOutgoingData, setRawOutgoingData] = useState(null);
 
   useEffect(() => {
     socketService.connect();
 
-    socketService.on("dataPacket", (data) => {
+    socketService.on("IncomingDataPacket", (data) => {
       console.log("Received data packet: ", data);
-      setRawData(data);
+      setRawIncomingData(data);
     });
 
+    
     return () =>{
       socketService.disconnect();
     }
   }, []);
+
+  useEffect(() =>{
+    socketService.emit("OutgoingDataPacket", rawOutgoingData);
+    console.log("Sent data packet: ", rawOutgoingData);
+  }, [rawOutgoingData]);
   
   return (
-    <div className="MainCont">
-      <div className="FirstColumn">
-        <div className="FrameDataCont">
-          <FrameDiagnostic id="FrameDiagnostic"/>
-          <DataStream id="DataStream"/>
-        </div>
-        <IMUInfo id="IMUInfo"/>
+    <rawIncomingDataContext.Provider value={rawIncomingData}>
+      <rawOutgoingDataContext.Provider value={{rawOutgoingData, setRawOutgoingData}}>
+        <div className="MainCont">
+          <div className="FirstColumn">
+            <div className="FrameDataCont">
+              <FrameDiagnostic id="FrameDiagnostic"/>
+              <DataStream id="DataStream"/>
+            </div>
+            <IMUInfo id="IMUInfo"/>
 
-      </div>
-      <div className="SecondColumn">
-        <VideoStream id="VideoStream"/>
-        <div className="InstructControlsCont">          
-          <Instruction id="Instruction" />
-          <Controls id="Controls"/>
+          </div>
+          <div className="SecondColumn">
+            <VideoStream id="VideoStream"/>
+            <div className="InstructControlsCont">          
+              <Instruction id="Instruction" />
+              <Controls id="Controls"/>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </rawOutgoingDataContext.Provider>
+    </rawIncomingDataContext.Provider>
+
   )
 
 }

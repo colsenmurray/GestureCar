@@ -1,9 +1,9 @@
 @import "../../../Utils/Variables";
 .CardCont{
     background-color: $primaryColor;
-    border-radius: 1em;
+    // border-radius: 1em;
+    // box-shadow: $shadow, $highlight;
     width: 100%;
-    box-shadow: $shadow, $highlight;
 }
 
 .Title{
@@ -38,6 +38,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: $tertiaryGlowColor;
 }
 
 .SteeringCard{
@@ -49,6 +50,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: $tertiaryGlowColor;
+
 }
 .Slider{
     width: 65%;

@@ -5,5 +5,8 @@
     font-size: .5em;
     margin: 0;
     padding: 0;
-    // use webkit to change scroll bar
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow-y: auto;
 }

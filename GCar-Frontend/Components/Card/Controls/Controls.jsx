@@ -1,8 +1,11 @@
 import styles from "./Controls.module.scss";
 import { useState } from "react";
 import { motion, useAnimate } from 'framer-motion'
-import { useEffect } from "react";
-function Controls({ className, id }) {
+import { useEffect, useContext } from "react";
+import { rawOutgoingDataContext } from "../../../src/App";
+
+function Controls({ className, id }) { 
+    const { rawOutgoingData, setRawOutgoingData } = useContext(rawOutgoingDataContext);
 
     const [scope, animate] = useAnimate()
     useEffect(() =>{
@@ -18,16 +21,16 @@ function Controls({ className, id }) {
 
     const handleSpeedSliderChange = (event) => {
         setSpeedValue(event.target.value);
-        
+        setRawOutgoingData({speed: event.target.value, steering: steeringValue});
     };
 
     const handleSteeringSliderChange = (event) => {
         setSteeringValue(event.target.value);
+        setRawOutgoingData({speed: speedValue, steering: event.target.value});
     }
     return (
         <motion.div className={`${styles.CardCont}`} id={id}
             initial={{ opacity: 0, y: 50 }}
-            whileHover={{ scale: 1.01 , transition: { duration: .1, ease:"linear" } }}
             ref={scope}>
             <motion.div className={`${styles.Title}`}>Controls
             </motion.div>

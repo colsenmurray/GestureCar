@@ -1,12 +1,16 @@
 import styles from "./Instruction.module.scss";
 import { motion, useAnimate } from 'framer-motion'
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import imageSrc from "../../../src/assets/image (2).png";
+import { rawIncomingDataContext } from "../../../src/App";
 
 function Instruction({ className, id}) {
     const [gesture, setGesture] = useState("L");
     const [instruction, setInstruction] = useState("Turn Left");
     const [scope, animate] = useAnimate()
+
+    const rawIncomingData = useContext(rawIncomingDataContext);
+    //TODO  - Add a useEffect to update the gesture and instruction state with the rawIncomingData
     useEffect(() =>{
         const animation = async () => {
             await animate(scope.current, { opacity: 1, y: 0 }, { delay: 3 * 0.2 , ease: "easeInOut", duration: .75 })
@@ -17,7 +21,6 @@ function Instruction({ className, id}) {
     return (
         <motion.div className={`${styles.CardCont}`} id={id}
             initial={{ opacity: 0, y: 50 }}
-            whileHover={{ scale: 1.01 , transition: { duration: .1, ease:"linear" } }}
             ref={scope}
             
         >

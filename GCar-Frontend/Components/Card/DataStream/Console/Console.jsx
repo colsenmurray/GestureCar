@@ -11,9 +11,9 @@ function Console({ className, id, data, setData }) {
         )
     })
     return (
-        <div className={`${styles.ConsoleCont}`} id={id}>
-
+        <div className={`${styles.ConsoleCont} ${className}`} id={id}>
             {dataDisplay}
+            <p style={{margin: 0}}>{'> '}</p>
         </div>
     )
 }
