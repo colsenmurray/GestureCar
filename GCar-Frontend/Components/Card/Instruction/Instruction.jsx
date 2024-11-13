@@ -1,24 +1,53 @@
 import styles from "./Instruction.module.scss";
-import { motion } from 'framer-motion'
+import { motion, useAnimate } from 'framer-motion'
+import { useEffect, useState, useContext } from "react";
+import imageSrc from "../../../src/assets/image (2).png";
+import { rawIncomingDataContext } from "../../../src/App";
 
 function Instruction({ className, id}) {
+    const [gesture, setGesture] = useState("L");
+    const [instruction, setInstruction] = useState("Turn Left");
+    const [scope, animate] = useAnimate()
 
+    const rawIncomingData = useContext(rawIncomingDataContext);
+    //TODO  - Add a useEffect to update the gesture and instruction state with the rawIncomingData
+    useEffect(() =>{
+        const animation = async () => {
+            await animate(scope.current, { opacity: 1, y: 0 }, { delay: 3 * 0.2 , ease: "easeInOut", duration: .75 })
+          }
+          
+          animation()
+    },[])
     return (
         <motion.div className={`${styles.CardCont}`} id={id}
             initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 3 * 0.2 , ease: "easeInOut", duration: .75 }}
+            ref={scope}
+            
         >
             <motion.div className={`${styles.Title}`}
-            initial={{ filter: "drop-shadow(0px 0px 10px $tertiary)" }}
             >
                 Instruction
             </motion.div>
                 <motion.div className={`${styles.Underline}`}
-                intial={{width: 0}}
+                initial={{width: 0}}
                 animate={{width: "100%"}}
                 transition={{ delay: 3 * 0.2  + .75, ease: "easeInOut", duration: .75 }}
                 ></motion.div>
+            <div className={`${styles.MainCont}`}>
+                <motion.div className={`${styles.GestureCont}`}>
+                    <motion.div className={`${styles.GestureTitle}`}>
+                        GestureDetected
+                        <motion.div className={`${styles.Sign}`}>{gesture}</motion.div>
+                    </motion.div>
+                    <img src={imageSrc} className={`${styles.Img}`}></img>
+                </motion.div>
+                <motion.div className={`${styles.InstructCont}`}>
+                    <motion.p className={`${styles.InstructTitle}`}>
+                        {instruction}
+                    </motion.p>
+                </motion.div>
+            </div>
+            
         </motion.div>
     )
 }
