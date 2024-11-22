@@ -16,10 +16,8 @@ socketio = SocketIO(app, cors_allowed_origins="*")  # Allow any frontend to conn
 send_data_flag = True
 
 cam_port = 0
-mean = 128.33125
-std = 15.842568
-modelPath = '../models/COSC307_limited_data_CNN2.keras'
-model = load_model(modelPath)
+mean, std = 128.33125, 15.842568
+model = load_model('../models/COSC307_limited_data_CNN2.keras')
 
 def prediction(image):
     prediction = model.predict(image, batch_size=1)
@@ -55,72 +53,65 @@ def encode_image_to_base64(image):
 def send_data():
     global send_data_flag
     cam = cv2.VideoCapture(cam_port)
+    cam.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
-    color = (0, 0, 255)         # red (B,G,R)
-    thickness = 2
+    last_emit_time = time.time()
+    target_interval = 1/30 # 30 fps
 
-    letter = ''
-    chance = ''
+    letter, chance = '', ''
 
-    i = 0
-    while send_data_flag:
-        # socketio.emit('server_event', {'data': 'Hello from Flask! ' + str(i)})
+    try:
+        while send_data_flag:
+            # socketio.emit('server_event', {'data': 'Hello from Flask! ' + str(i)})
 
-        valid, image = cam.read()
+            _, image = cam.read()
 
-        frameSize = image.shape
-        x = frameSize[1]
-        y = frameSize[0]
+            frameSize = image.shape
+            x = frameSize[1]
+            y = frameSize[0]
 
-        left = int((x - 256) / 2)
-        right = left + 256
-        top = int((y - 256) / 2)
-        bottom = top + 256
+            left = int((x - 256) / 2)
+            right = left + 256
+            top = int((y - 256) / 2)
+            bottom = top + 256
 
 
-        start_point = (left, top)    # top left corner of box
-        end_point = (right, bottom)      # bottom right corner of box
+            start_point = (left, top)    # top left corner of box
+            end_point = (right, bottom)      # bottom right corner of box
 
-        rectangle = cv2.rectangle(image, start_point, end_point, color, thickness)
+            rectangle = cv2.rectangle(image, start_point, end_point, (0, 0, 255), 2)
+            processed_image = preprocess_image(image, top, bottom, left, right)
 
-        encoded_image = encode_image_to_base64(rectangle)
-        processed_image = preprocess_image(image, top, bottom, left, right)
+            encoded_image = encode_image_to_base64(rectangle)
 
-        if i >= 10:
-            i = 0
+            current_time = time.time()
+            if current_time - last_emit_time >= target_interval:
+                letter, chance = prediction(processed_image)
+                socketio.emit('receive_data', {'image': encoded_image, 'data': f"{letter} {chance}%"})
+                last_emit_time = current_time
 
-            letter, chance = prediction(processed_image)
-            chance = str(chance)
-            # print(f"Predicted: {letter}, {chance}% chance")
-        else:
-            time.sleep(.01)
-
-        # print(f"Sending data...")
-        # print(f"First 100 chars of encoded image: {encoded_image[:100]}")
-        
-        socketio.emit('receive_data', {'image': encoded_image, 'data': f"{letter} {chance}%"})
-
-        i += 1
-
-    cam.release()
+    finally:
+        cam.release()
 
 
 @socketio.on('connect')
 def handle_connect():
-    print("Client connected")
-    socketio.start_background_task(send_data)
     global send_data_flag
     send_data_flag = True
+    print("Client connected")
+    socketio.start_background_task(send_data)
 
 
 @socketio.on('disconnect')
 def handle_disconnect():
     global send_data_flag
-    print('Client Disconnected')
     send_data_flag = False
+    print('Client Disconnected')
 
 
 if __name__ == '__main__':
     eventlet.monkey_patch()
+
+    tf.config.optimizer.set_jit(True)  # Enable XLA
 
     socketio.run(app, port=5001)
