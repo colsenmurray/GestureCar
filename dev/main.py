@@ -48,9 +48,8 @@ def preprocess_image(img, top, bottom, left, right): # img is a np array (captur
     return processed_image
 
 def encode_image_to_base64(image):
-    _, buffer = cv2.imencode('.png', image)  # Encode as PNG
-    byte_image = buffer.tobytes()  # Convert to byte array
-    encoded_image = base64.b64encode(byte_image).decode('utf-8')  # Base64 encode
+    encoded_image = cv2.imencode('.jpg', image)[1].tobytes()
+    encoded_image = base64.b64encode(encoded_image).decode('utf-8')  # Base64 encode
     return encoded_image
 
 def send_data():
@@ -99,7 +98,7 @@ def send_data():
         # print(f"Sending data...")
         # print(f"First 100 chars of encoded image: {encoded_image[:100]}")
         
-        socketio.emit('receive_data', {'image': encoded_image, 'data': letter + ' ' + chance})
+        socketio.emit('receive_data', {'image': encoded_image, 'data': f"{letter} {chance}%"})
 
         i += 1
 
