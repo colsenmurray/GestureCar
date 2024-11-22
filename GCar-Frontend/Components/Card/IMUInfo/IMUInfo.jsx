@@ -1,9 +1,4 @@
 import styles from "./IMUInfo.module.scss";
-<<<<<<< HEAD
-import { motion } from 'framer-motion'
-
-function IMUInfo({ className, id}) {
-=======
 import { motion, useAnimate } from 'framer-motion'
 import { useEffect } from "react";
 function IMUInfo({ className, id}) {
@@ -15,18 +10,12 @@ function IMUInfo({ className, id}) {
           
           animation()
     },[])
->>>>>>> Front-end
 
     return (
         <motion.div className={`${styles.CardCont}`} id={id}
             initial={{ opacity: 0, y: 50 }}
-<<<<<<< HEAD
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2 * 0.2 , ease: "easeInOut", duration: .75 }}>
-=======
             ref={scope}
 >
->>>>>>> Front-end
             <motion.div className={`${styles.Title}`}
             initial={{ filter: "drop-shadow(0px 0px 10px $tertiary)" }}>
                 IMU Info

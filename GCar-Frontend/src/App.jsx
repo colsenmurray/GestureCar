@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-=======
 import { useState, useEffect, createContext} from 'react'
->>>>>>> Front-end
 import viteLogo from '/vite.svg'
 import './App.scss'
 import VideoStream from '../Components/VideoStream/VideoStream'
@@ -13,29 +8,6 @@ import Controls from '../Components/Card/Controls/Controls'
 import IMUInfo from '../Components/Card/IMUInfo/IMUInfo'
 import DataStream from '../Components/Card/DataStream/DataStream'
 import Instruction from '../Components/Card/Instruction/Instruction'
-<<<<<<< HEAD
-
-function App() {
-
-  return (
-    <div className="MainCont">
-      <div className="FirstColumn">
-        <div className="FrameDataCont">
-          <FrameDiagnostic id="FrameDiagnostic"/>
-          <DataStream id="DataStream"/>
-        </div>
-        <IMUInfo id="IMUInfo"/>
-
-      </div>
-      <div className="SecondColumn">
-        <VideoStream id="VideoStream"/>
-        <div className="InstructControlsCont">          
-          <Instruction id="Instruction" />
-          <Controls id="Controls"/>
-        </div>
-      </div>
-    </div>
-=======
 import socketService from '../Utils/Api.js'
 
 export const rawIncomingDataContext = createContext();
@@ -88,7 +60,6 @@ function App() {
       </rawOutgoingDataContext.Provider>
     </rawIncomingDataContext.Provider>
 
->>>>>>> Front-end
   )
 
 }
