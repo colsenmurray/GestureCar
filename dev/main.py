@@ -21,7 +21,7 @@ std = 15.842568
 modelPath = '../models/COSC307_limited_data_CNN2.keras'
 model = load_model(modelPath)
 
-def get_prediction(image):
+def prediction(image):
     prediction = model.predict(image, batch_size=1)
     maxIndex = prediction[0].argmax()
 
@@ -90,7 +90,7 @@ def send_data():
         if i >= 10:
             i = 0
 
-            letter, chance = get_prediction(processed_image)
+            letter, chance = prediction(processed_image)
             chance = str(chance)
             # print(f"Predicted: {letter}, {chance}% chance")
         else:
