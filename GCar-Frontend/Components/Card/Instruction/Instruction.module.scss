@@ -1,14 +1,8 @@
 @import "../../../Utils/Variables";
 .CardCont{
     background-color: $primaryColor;
-<<<<<<< HEAD
-    border-radius: 1em;
-    width: 100%;
-    box-shadow: $shadow, $highlight;
-=======
     // border-radius: 1em;
     width: 100%;
->>>>>>> Front-end
 }
 
 .Title{
@@ -18,18 +12,12 @@
     text-shadow: 0px 0px 10px 0px $tertiaryColor;
     text-align: left;
     padding: 0.5em 0 0.25em 0.5em;
-<<<<<<< HEAD
-=======
     
->>>>>>> Front-end
 }
 
 .Underline{
     border-bottom: 2px solid $tertiaryColor;
     width: 0%;
-<<<<<<< HEAD
-}
-=======
 }
 
 .MainCont{
@@ -77,4 +65,3 @@
     padding: 0;
 }
 
->>>>>>> Front-end
