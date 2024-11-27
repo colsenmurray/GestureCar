@@ -1,3 +1,4 @@
 dataset/
 .car_venv/
+.venv
 GCar-Frontend/node_modules

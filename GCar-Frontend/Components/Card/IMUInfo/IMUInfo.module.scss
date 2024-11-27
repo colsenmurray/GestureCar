@@ -1,5 +1,4 @@
-@import "../../../Utils/Variables";
-.CardCont{
+@use "../../../Utils/Variables.scss" as *;.CardCont{
     background-color: $primaryColor;
     width: 100%;
     // box-shadow: $shadow, $highlight;

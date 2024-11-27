@@ -20,8 +20,13 @@ function App() {
   useEffect(() => {
     socketService.connect();
 
-    socketService.on("IncomingDataPacket", (data) => {
-      console.log("Received data packet: ", data);
+    
+
+    socketService.on('receive_data', (data) => {
+      // console.log('Received image data:', data);
+
+      // if (data?.image) setRawIncomingData((prev)=> ({...prev, image: data.image}));  // Update the image state
+      // if (data?.data) setRawIncomingData((prev) => ({...prev, data: data.data}));  // Update the message state
       setRawIncomingData(data);
     });
 
@@ -30,6 +35,8 @@ function App() {
       socketService.disconnect();
     }
   }, []);
+
+
 
   useEffect(() =>{
     socketService.emit("OutgoingDataPacket", rawOutgoingData);

@@ -1,4 +1,4 @@
-@import "../../../Utils/Variables";
+@use "../../../Utils/Variables.scss" as *;
 .CardCont{
     background-color: $primaryColor;
     // border-radius: 1em;

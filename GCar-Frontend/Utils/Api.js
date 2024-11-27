@@ -1,7 +1,7 @@
 // api.js
 import { io } from "socket.io-client";
 
-const SOCKET_SERVER_URL = "http://localhost:4000"; // Replace with your server URL
+const SOCKET_SERVER_URL = "http://localhost:5001"; // Replace with your server URL
 
 class WebSocketService {
     constructor() {

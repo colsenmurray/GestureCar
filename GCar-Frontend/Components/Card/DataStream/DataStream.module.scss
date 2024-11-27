@@ -1,4 +1,4 @@
-@import "../../../Utils/Variables";
+@use "../../../Utils/Variables.scss" as *;
 .CardCont{
     background-color: $primaryColor;
     // border-radius: 1em;
@@ -31,7 +31,7 @@
 
 .DataConsoleCont{
     width: 60%;
-    height: 8em;
+    height: 15em;
     display: flex;
     margin: .5em;
     background-color: black;
