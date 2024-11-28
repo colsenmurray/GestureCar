@@ -1,7 +1,9 @@
-@use "../../../Utils/Variables.scss" as *;.CardCont{
+@use "../../../Utils/Variables.scss" as *;
+.CardCont{
     background-color: $primaryColor;
-    // border-radius: 1em;
+    border-radius: 1em;
     width: 100%;
+    box-shadow: $shadow, $highlight;
 }
 
 .Title{
@@ -44,6 +46,10 @@
     margin: 1em;
 }
 
+.Sign{
+    margin-top: 1em;
+}
+
 .InstructCont{
     background-color: $secondaryColor;
     border-radius: .5em;
@@ -55,6 +61,10 @@
     align-items: center;
     box-shadow: $tertiaryGlowColor;
 
+}
+
+.InstructTitle{
+    font-size: 2em;
 }
 
 .Img{

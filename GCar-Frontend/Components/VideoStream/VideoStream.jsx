@@ -14,11 +14,10 @@ function VideoStream({ title, description, image, id }) {
     const [frameData, setFrameData] = useState(null);
 
     useEffect(() => {
-        // console.log(rawIncomingData.image)
         if (rawIncomingData?.image) {
             setFrameData(rawIncomingData.image);
         }
-    }, [rawIncomingData]);
+    }, [rawIncomingData?.image]);
 
     if (frameData){
         return (

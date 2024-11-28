@@ -28,13 +28,13 @@ function Instruction({ className, id}) {
                         setInstruction("Stop");
                         break;
                     case "Y":
-                        setInstruction("Turn Right");
+                        setInstruction("Left");
                         break;
                     case "R":
-                        setInstruction("Turn Left");
+                        setInstruction("Right");
                         break;
                     case "O":
-                        setInstruction("Go Straight");
+                        setInstruction("Go");
                         break;
                     case "V":
                         setInstruction("Reverse");

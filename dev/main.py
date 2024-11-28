@@ -16,11 +16,14 @@ socketio = SocketIO(app, cors_allowed_origins="*")  # Allow any frontend to conn
 send_data_flag = True
 
 cam_port = 0
+
+
+
 mean, std = 128.33125, 15.842568
 model = load_model('../models/COSC307_limited_data_CNN2.keras')
 
 def prediction(image):
-    prediction = model.predict(image, batch_size=1)
+    prediction = model.predict(image, batch_size=1, verbose=0)
     maxIndex = prediction[0].argmax()
 
     letters = ['P','Y','R','O','V']
@@ -54,6 +57,7 @@ def send_data():
     global send_data_flag
     cam = cv2.VideoCapture(cam_port)
     cam.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+    
 
     last_emit_time = time.time()
     target_interval = 1/30 # 30 fps
@@ -83,13 +87,14 @@ def send_data():
             processed_image = preprocess_image(image, top, bottom, left, right)
 
             encoded_image = encode_image_to_base64(rectangle)
-
+            
             current_time = time.time()
             if current_time - last_emit_time >= target_interval:
+                
                 letter, chance = prediction(processed_image)
                 socketio.emit('receive_data', {'image': encoded_image, 'data': f"{letter} {chance}%"})
                 last_emit_time = current_time
-
+        
     finally:
         cam.release()
 
@@ -107,6 +112,9 @@ def handle_disconnect():
     global send_data_flag
     send_data_flag = False
     print('Client Disconnected')
+    
+
+
 
 
 if __name__ == '__main__':
