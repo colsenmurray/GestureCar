@@ -23,7 +23,7 @@ mean, std = 128.33125, 15.842568
 model = load_model('../models/COSC307_limited_data_CNN2.keras')
 
 def prediction(image):
-    prediction = model.predict(image, batch_size=1, verbose=0)
+    prediction = model.predict(image, batch_size=1)
     maxIndex = prediction[0].argmax()
 
     letters = ['P','Y','R','O','V']
