@@ -7,8 +7,14 @@ time.sleep(2)
 flag = True
 
 # while flag:
-command = 'F'
-bluetooth.write(command.encode())
-time.sleep(10)
+speed = 2
+steer = 3
+print(chr(ord('f') + steer))
+bluetooth.write(chr(ord('a') + speed).encode())
+bluetooth.flush()
+time.sleep(.03)
+bluetooth.write(chr(ord('f') + steer).encode())
+bluetooth.flush()
+time.sleep(5)
 
 bluetooth.write('S'.encode())
