@@ -16,8 +16,8 @@ function Controls({ className, id, setSliderData }) {
           animation()
     },[])
 
-    const [speedValue, setSpeedValue] = useState(5); // Initial value at 50 or any default you want
-    const [steeringValue, setSteeringValue] = useState(5); // Initial value at 50 or any default you want
+    const [speedValue, setSpeedValue] = useState(1); 
+    const [steeringValue, setSteeringValue] = useState(1); 
 
     const handleSpeedSliderChange = (event) => {
         setSpeedValue(event.target.value);
