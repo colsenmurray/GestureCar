@@ -43,13 +43,13 @@ function Controls({ className, id, setSliderData }) {
             <div className={`${styles.MainCont}`}>
                 <motion.div className={`${styles.SpeedCard}`}>
                     <div className={`${styles.SubTitle}`}>Speed</div>
-                    <input className={`${styles.Slider}`} type="range" id="slider" name="slider" min="1" max="5" value={speedValue} 
+                    <input className={`${styles.Slider}`} type="range" id="slider" name="slider" min="0" max="5" value={speedValue} 
                 onChange={handleSpeedSliderChange}></input>
                     <label className={`${styles.SliderVal}`}>{speedValue}</label>
                 </motion.div>
                 <motion.div className={`${styles.SteeringCard}`}>
                     <div className={`${styles.SubTitle}`}>Steering</div>
-                    <input className={`${styles.Slider}`} type="range" id="slider" name="slider" min="1" max="5" value={steeringValue}
+                    <input className={`${styles.Slider}`} type="range" id="slider" name="slider" min="0" max="5" value={steeringValue}
                     onChange={handleSteeringSliderChange}></input>
                     <label className={`${styles.SliderVal}`}>{steeringValue}</label>
                 </motion.div>
