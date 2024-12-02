@@ -8,6 +8,7 @@ function Instruction({ className, id}) {
     const [gesture, setGesture] = useState("L");
     const [instruction, setInstruction] = useState("Turn Left");
     const [scope, animate] = useAnimate()
+    const [imageSRC, setImageSrc] = useState(imageSrc);
 
     const rawIncomingData = useContext(rawIncomingDataContext);
     //TODO  - Add a useEffect to update the gesture and instruction state with the rawIncomingData
@@ -40,10 +41,13 @@ function Instruction({ className, id}) {
                         setInstruction("Reverse");
                         break;
                 }
+                
             }else{
                 setInstruction("None");
                 setGesture("N/A");
             }
+            setImageSrc(rawIncomingData.baby_image);
+
         }
     },[rawIncomingData]);
     return (
@@ -67,7 +71,7 @@ function Instruction({ className, id}) {
                         GestureDetected
                         <motion.div className={`${styles.Sign}`}>{gesture}</motion.div>
                     </motion.div>
-                    <img src={imageSrc} className={`${styles.Img}`}></img>
+                    <img src={`data:image/jpeg;base64,${imageSRC}`} className={`${styles.Img}`}></img>
                 </motion.div>
                 <motion.div className={`${styles.InstructCont}`}>
                     <motion.p className={`${styles.InstructTitle}`}>
