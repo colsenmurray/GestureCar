@@ -20,7 +20,7 @@ function App() {
   const [connected, setConnected] = useState(false);
   const [sliderData, setSliderData] = useState(rawOutgoingData);
 
-
+  
   useEffect(() => {
     socketService.connect(setConnected);
     
