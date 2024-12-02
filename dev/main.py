@@ -84,15 +84,17 @@ def send_data():
             end_point = (right, bottom)      # bottom right corner of box
 
             rectangle = cv2.rectangle(image, start_point, end_point, (0, 0, 255), 2)
+            baby_image = image[top:bottom, left:right]
             processed_image = preprocess_image(image, top, bottom, left, right)
 
             encoded_image = encode_image_to_base64(rectangle)
+            encoded_baby_image = encode_image_to_base64(baby_image)
             
             current_time = time.time()
             if current_time - last_emit_time >= target_interval:
                 
                 letter, chance = prediction(processed_image)
-                socketio.emit('receive_data', {'image': encoded_image, 'data': f"{letter} {chance}%"})
+                socketio.emit('receive_data', {'image': encoded_image, 'data': f"{letter} {chance}%", 'baby_image': encoded_baby_image})
                 last_emit_time = current_time
         
     finally:
