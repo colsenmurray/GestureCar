@@ -40,27 +40,27 @@ function HowToUseCard({ className, id}) {
                 <div className={`${styles.OCard} ${styles.Card}`}>
                     <img src={O} className={styles.image}/>
                     <img src={Forward} className={styles.image}/>
-                    O: Go
+                    W: Go
                 </div>
                 <div className={`${styles.PCard} ${styles.Card}`}>
-                    <img src={P} className={styles.image}/>
+                    <img src={Y} className={styles.image}/>
                     <img src={Stationary} className={styles.image}/>
-                    P: Stop
+                    Y: Stop
                 </div>
                 <div className={`${styles.YCard} ${styles.Card}`}>
                     <img src={Y} className={styles.image}/>
                     <img src={Left} className={styles.image}/>
-                    Y: Left
+                    L: Left
                 </div>
                 <div className={`${styles.RCard} ${styles.Card}`}>
                     <img src={R} className={styles.image}/>
                     <img src={Right} className={styles.image}/>
-                    R: Right
+                    C: Right
                 </div>
                 <div className={`${styles.VCard} ${styles.Card}`}>
-                    <img src={V} className={styles.image}/>
+                    <img src={O} className={styles.image}/>
                     <img src={Backward} className={styles.image}/>
-                    V: Reverse
+                    O: Reverse
                 </div>
                 
             </motion.div>
