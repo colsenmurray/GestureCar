@@ -1,11 +1,11 @@
 import styles from "./HowToUseCard.module.scss";
 import { motion, useAnimate } from 'framer-motion'
 import { useEffect } from "react";
-import P from "../../../src/assets/P.png";
+import L from "../../../src/assets/L.png";
 import Y from "../../../src/assets/Y.png";
-import R from "../../../src/assets/R.png";
+import W from "../../../src/assets/W.png";
 import O from "../../../src/assets/O.png";
-import V from "../../../src/assets/V.png";
+import C from "../../../src/assets/C.png";
 import Forward from "../../../src/assets/CarForward.png";
 import Left from "../../../src/assets/CarLeft.png";
 import Right from "../../../src/assets/CarRight.png";
@@ -38,7 +38,7 @@ function HowToUseCard({ className, id}) {
             </motion.div>
             <motion.div className={`${styles.MainCont}`}>
                 <div className={`${styles.OCard} ${styles.Card}`}>
-                    <img src={O} className={styles.image}/>
+                    <img src={W} className={styles.image}/>
                     <img src={Forward} className={styles.image}/>
                     W: Go
                 </div>
@@ -48,12 +48,12 @@ function HowToUseCard({ className, id}) {
                     Y: Stop
                 </div>
                 <div className={`${styles.YCard} ${styles.Card}`}>
-                    <img src={Y} className={styles.image}/>
+                    <img src={L} className={styles.image}/>
                     <img src={Left} className={styles.image}/>
                     L: Left
                 </div>
                 <div className={`${styles.RCard} ${styles.Card}`}>
-                    <img src={R} className={styles.image}/>
+                    <img src={C} className={styles.image}/>
                     <img src={Right} className={styles.image}/>
                     C: Right
                 </div>
