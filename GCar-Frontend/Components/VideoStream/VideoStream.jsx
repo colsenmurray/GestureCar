@@ -13,10 +13,16 @@ function VideoStream({ title, description, image, id }) {
 
     const [frameData, setFrameData] = useState(null);
 
+    useEffect(() => {
+        if (rawIncomingData?.image) {
+            setFrameData(rawIncomingData.image);
+        }
+    }, [rawIncomingData?.image]);
+
     if (frameData){
         return (
-            <div>
-                {frameData && <img src={`data:image/jpeg;base64,${frameData}`} alt="Streamed Video" />}
+            <div className={`${styles.VideoStreamCont}`} id={id}>
+                {frameData && <img src={`data:image/jpeg;base64,${frameData}`} alt="Streamed Video"  className={`${styles.phImage}`}/>}
             </div>
         );
     }

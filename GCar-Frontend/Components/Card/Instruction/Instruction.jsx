@@ -18,6 +18,34 @@ function Instruction({ className, id}) {
           
           animation()
     },[])
+
+    useEffect(() =>{
+        if(rawIncomingData){
+            setGesture(rawIncomingData.data);
+            if(rawIncomingData.data.slice(1, rawIncomingData.data.indexOf('%')) > 60){
+                switch(rawIncomingData.data[0]){
+                    case "P":
+                        setInstruction("Stop");
+                        break;
+                    case "Y":
+                        setInstruction("Left");
+                        break;
+                    case "R":
+                        setInstruction("Right");
+                        break;
+                    case "O":
+                        setInstruction("Go");
+                        break;
+                    case "V":
+                        setInstruction("Reverse");
+                        break;
+                }
+            }else{
+                setInstruction("None");
+                setGesture("N/A");
+            }
+        }
+    },[rawIncomingData]);
     return (
         <motion.div className={`${styles.CardCont}`} id={id}
             initial={{ opacity: 0, y: 50 }}
