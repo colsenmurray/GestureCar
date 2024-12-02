@@ -8,6 +8,7 @@ import eventlet
 import time
 import base64
 import cv2
+import serial
 
 app = Flask(__name__)
 CORS(app,resources={r"/*":{"origins":"*"}})
@@ -16,8 +17,11 @@ socketio = SocketIO(app, cors_allowed_origins="*")  # Allow any frontend to conn
 send_data_flag = True
 
 cam_port = 0
+com_port = 'COM5'
+bluetooth = serial.Serial(com_port, 9600)
 
-
+speed, steer = 1, 1
+command_map = {'P':'L','Y':'F','R':'R','O':'S','V':'B'}
 
 mean, std = 128.33125, 15.842568
 model = load_model('../models/COSC307_limited_data_CNN2.keras')
@@ -96,6 +100,8 @@ def send_data():
                 letter, chance = prediction(processed_image)
                 socketio.emit('receive_data', {'image': encoded_image, 'data': f"{letter} {chance}%", 'baby_image': encoded_baby_image})
                 last_emit_time = current_time
+
+            # bluetooth.write(letter.encode())
         
     finally:
         cam.release()
@@ -114,6 +120,13 @@ def handle_disconnect():
     global send_data_flag
     send_data_flag = False
     print('Client Disconnected')
+
+@socketio.on('OutgoingDataPacket')
+def handle_recieve_data(data):
+    global speed, steer
+    speed = data['speed']
+    steer = data['steering']
+    print(f"Recieved Speed Data:  Speed, {speed}  Steer, {steer}")
     
 
 
