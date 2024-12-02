@@ -16,19 +16,19 @@ function FrameDiagnostic({ title, description, image, id }) {
             setImageType(Stationary);
         }else{
             switch(rawIncomingData?.data[0]){
-                case "P":
+                case "Y":
                     setImageType(Stationary);
                     break;
-                case "Y":
+                case "L":
                     setImageType(Left);
                     break;
-                case "R":
+                case "C":
                     setImageType(Right);
                     break;
-                case "O":
+                case "W":
                     setImageType(Forward);
                     break;
-                case "V":
+                case "O":
                     setImageType(Backward);
                     break;
                 

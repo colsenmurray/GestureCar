@@ -8,7 +8,7 @@ function Instruction({ className, id}) {
     const [gesture, setGesture] = useState("L");
     const [instruction, setInstruction] = useState("Turn Left");
     const [scope, animate] = useAnimate()
-    const [imageSRC, setImageSrc] = useState(imageSrc);
+    const [imageSRC, setImageSrc] = useState(null);
 
     const rawIncomingData = useContext(rawIncomingDataContext);
     //TODO  - Add a useEffect to update the gesture and instruction state with the rawIncomingData
@@ -25,19 +25,19 @@ function Instruction({ className, id}) {
             setGesture(rawIncomingData.data);
             if(rawIncomingData.data.slice(1, rawIncomingData.data.indexOf('%')) > 60){
                 switch(rawIncomingData.data[0]){
-                    case "P":
-                        setInstruction("Stop");
-                        break;
                     case "Y":
+                        setInstruction("Stop");
+                        break; 
+                    case "L":
                         setInstruction("Left");
                         break;
-                    case "R":
+                    case "C":
                         setInstruction("Right");
                         break;
-                    case "O":
+                    case "W":
                         setInstruction("Go");
                         break;
-                    case "V":
+                    case "O":
                         setInstruction("Reverse");
                         break;
                 }
@@ -71,7 +71,7 @@ function Instruction({ className, id}) {
                         GestureDetected
                         <motion.div className={`${styles.Sign}`}>{gesture}</motion.div>
                     </motion.div>
-                    <img src={`data:image/jpeg;base64,${imageSRC}`} className={`${styles.Img}`}></img>
+                    {imageSRC?<img src={`data:image/jpeg;base64,${imageSRC}`} className={`${styles.Img}`}/>:<img src={imageSrc} className={`${styles.Img}`}/>}
                 </motion.div>
                 <motion.div className={`${styles.InstructCont}`}>
                     <motion.p className={`${styles.InstructTitle}`}>
