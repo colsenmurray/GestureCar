@@ -21,7 +21,7 @@ com_port = 'COM5'
 bluetooth = serial.Serial(com_port, 9600)
 
 speed, steer = 1, 1
-command_map = {'P':'L','Y':'F','R':'R','O':'S','V':'B'}
+command_map = {'P':'S','Y':'L','R':'R','O':'F','V':'B'}
 
 mean, std = 128.33125, 15.842568
 model = load_model('../models/COSC307_limited_data_CNN2.keras')
@@ -67,6 +67,7 @@ def send_data():
     target_interval = 1/30 # 30 fps
 
     letter, chance = '', ''
+    counter = 0
 
     try:
         while send_data_flag:
@@ -101,7 +102,11 @@ def send_data():
                 socketio.emit('receive_data', {'image': encoded_image, 'data': f"{letter} {chance}%", 'baby_image': encoded_baby_image})
                 last_emit_time = current_time
 
-            # bluetooth.write(letter.encode())
+            if counter >= 30:
+                bluetooth.write(command_map[letter].encode())
+                counter = 0
+            else:
+                counter += 1
         
     finally:
         cam.release()
@@ -119,6 +124,7 @@ def handle_connect():
 def handle_disconnect():
     global send_data_flag
     send_data_flag = False
+    bluetooth.write('S'.encode())
     print('Client Disconnected')
 
 @socketio.on('OutgoingDataPacket')
