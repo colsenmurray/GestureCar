@@ -1,6 +1,8 @@
 # gesture-car
 CS307 Final Project to Code a Gesture-Controlled Car
 Final Project Write-up
+## NOTE:
+    - Code will not connect properly without a bluetooth conenction to an rc car
 ## Packages and Requirements
 ### Front-end(npm):
     1. cd to “/GCar-Frontend” folder and run “npm install” to download all of the packages
