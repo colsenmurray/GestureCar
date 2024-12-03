@@ -8,6 +8,7 @@ import eventlet
 import time
 import base64
 import cv2
+import serial
 
 app = Flask(__name__)
 CORS(app,resources={r"/*":{"origins":"*"}})
@@ -16,8 +17,11 @@ socketio = SocketIO(app, cors_allowed_origins="*")  # Allow any frontend to conn
 send_data_flag = True
 
 cam_port = 0
+com_port = 'COM5'
+bluetooth = serial.Serial(com_port, 9600)
 
-
+speed, steer = 1, 1
+command_map = {'P':'S','Y':'L','R':'R','O':'F','V':'B'}
 
 mean, std = 128.33125, 15.842568
 model = load_model('../models/COSC307_limited_data_CNN2.keras')
@@ -54,7 +58,7 @@ def encode_image_to_base64(image):
     return encoded_image
 
 def send_data():
-    global send_data_flag
+    global send_data_flag, steer, speed
     cam = cv2.VideoCapture(cam_port)
     cam.set(cv2.CAP_PROP_BUFFERSIZE, 1)
     
@@ -63,6 +67,7 @@ def send_data():
     target_interval = 1/30 # 30 fps
 
     letter, chance = '', ''
+    counter = 0
 
     try:
         while send_data_flag:
@@ -96,6 +101,16 @@ def send_data():
                 letter, chance = prediction(processed_image)
                 socketio.emit('receive_data', {'image': encoded_image, 'data': f"{letter} {chance}%", 'baby_image': encoded_baby_image})
                 last_emit_time = current_time
+
+            if counter >= 6:
+                bluetooth.write(command_map[letter].encode())
+                counter = 0
+            elif counter == 3:
+                bluetooth.write(chr(ord('a') + speed).encode())
+            elif counter == 4:
+                bluetooth.write(chr(ord('f') + steer).encode())
+            
+            counter += 1
         
     finally:
         cam.release()
@@ -113,7 +128,15 @@ def handle_connect():
 def handle_disconnect():
     global send_data_flag
     send_data_flag = False
+    bluetooth.write('S'.encode())
     print('Client Disconnected')
+
+@socketio.on('OutgoingDataPacket')
+def handle_recieve_data(data):
+    global speed, steer
+    speed = int(data['speed']) - 1
+    steer = int(data['steering']) - 1
+    print(f"Recieved Speed Data:  Speed, {speed}  Steer, {steer}")
     
 
 
