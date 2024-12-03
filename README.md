@@ -14,10 +14,7 @@ Final Project Write-up
     1. cd to “/GCar-Frontend” and run “npm run dev” to start front-end application
 ### Back-end:
     1. cd to “/dev” and run “python main.py” to start back-end application
-### Hardware:
-    1. Ensure Arduino is powered on
-
-### Connecting the Car
+### Connecting the Car:
 
 Make sure the car is powered on and that the LED on the Bluetooth module is blinking rapidly.
 
