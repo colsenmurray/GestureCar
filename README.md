@@ -7,7 +7,7 @@ Final Project Write-up
         Dependencies can be found in "/GCar-Frontend/package.json" 
     
 ### Back-end(pip):
-    1. Activate virtual environment, cd to “/dev” folder, and run “pip install -r requirements.txt” to download all of the 
+    1. Activate virtual environment and run “pip install -r requirements.txt” to download all of the 
         Dependencies can be found in "requirements.txt"
 ## Running the programs
 ### Front-end:
