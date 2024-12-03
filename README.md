@@ -17,6 +17,30 @@ Final Project Write-up
 ### Hardware:
     1. Ensure Arduino is powered on
 
+### Connecting the Car
+
+Make sure the car is powered on and that the LED on the Bluetooth module is blinking rapidly.
+
+#### Steps for Windows 11
+
+1. Open **Settings** using <kbd>Win</kbd> + <kbd>I</kbd>.
+2. Navigate to **Bluetooth & Devices** > **Devices**.
+3. Scroll down to find **Bluetooth Devices Discover**.
+   - Click the dropdown and select **Advanced**.
+4. Click **Add Device** > **Bluetooth**.
+5. Look for **"HC-05"** in the list of devices the name may have a prefix.
+6. Select **HC-05** and enter the PIN **1234**.
+7. Once paired, scroll to **More Bluetooth Settings** and click on **COM Ports**.
+8. Find the **HC-05** and the label **Outgoing**.
+   - Remember the COM port (i.e., `COM5`).
+
+#### Updating the Code
+
+1. Open `main.py` in your code editor.
+2. Press <kbd>Ctrl</kbd> + <kbd>F</kbd> to search for the variable `com_port`.
+3. Update `com_port` to match the outgoing COM port from Step 8 (i.e, `COM5`).
+
+
 ## How to Use:
     1. This is a gesture controlled car trained on 5 ASL signs that correlate to instructions to the car
     2. The five signs are “Y”, “L”,”C”,”W”,”O”. The front end provides examples for how to sign this these letters
