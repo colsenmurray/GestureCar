@@ -7,7 +7,7 @@ Final Project Write-up
 ### Front-end(npm):
     1. cd to “/GCar-Frontend” folder and run “npm install” to download all of the packages
         Dependencies can be found in "/GCar-Frontend/package.json" 
-Note: npm[https://github.com/coreybutler/nvm-windows] and NodeJS must be added ahead of time
+Note: [npm](https://github.com/coreybutler/nvm-windows) and [NodeJS](https://nodejs.org/en/download/prebuilt-installer) must be added ahead of time
 ### Back-end(pip):
     1. Activate virtual environment and run “pip install -r requirements.txt” to download all of the 
         Dependencies can be found in "requirements.txt"
