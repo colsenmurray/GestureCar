@@ -17,20 +17,20 @@ socketio = SocketIO(app, cors_allowed_origins="*")  # Allow any frontend to conn
 send_data_flag = True
 
 cam_port = 0
-com_port = 'COM5'
+com_port = 'COM6'
 bluetooth = serial.Serial(com_port, 9600)
 
 speed, steer = 1, 1
-command_map = {'P':'S','Y':'L','R':'R','O':'F','V':'B'}
+command_map = {'Y':'S','L':'L','C':'R','W':'F','O':'B'}
 
 mean, std = 128.33125, 15.842568
-model = load_model('../models/COSC307_limited_data_CNN2.keras')
+model = load_model('../models/final_restricted_letters.keras')
 
 def prediction(image):
     prediction = model.predict(image, batch_size=1)
     maxIndex = prediction[0].argmax()
 
-    letters = ['P','Y','R','O','V']
+    letters = ['O','W','Y','C','L']
 
     return letters[maxIndex], int(prediction[0][maxIndex] * 100)
 
@@ -84,7 +84,6 @@ def send_data():
             top = int((y - 256) / 2)
             bottom = top + 256
 
-
             start_point = (left, top)    # top left corner of box
             end_point = (right, bottom)      # bottom right corner of box
 
@@ -134,8 +133,9 @@ def handle_disconnect():
 @socketio.on('OutgoingDataPacket')
 def handle_recieve_data(data):
     global speed, steer
-    speed = int(data['speed']) - 1
-    steer = int(data['steering']) - 1
+    if (data is not None):
+        speed = int(data['speed']) - 1
+        steer = int(data['steering']) - 1
     print(f"Recieved Speed Data:  Speed, {speed}  Steer, {steer}")
     
 
