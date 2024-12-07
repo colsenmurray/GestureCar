@@ -64,3 +64,8 @@ Make sure the car is powered on and that the LED on the Bluetooth module is blin
         Time: 4 hours
         Present: Perry, Colsen, Ashton, Porter
         Discussed: Integrated components of the model, fixed movement speed issues with the car, and wrote the user manual and dependency list. 
+
+### Active Files For Backend:
+Some files in the backend are simple demonstrations of the development along the way for grading. The following are actually run in the code:
+    1. dev/main.py
+    2. dev/working.ino
