@@ -10,21 +10,31 @@ import base64
 import cv2
 import serial
 
+# sets up a flask backend with socketio to send data
 app = Flask(__name__)
-CORS(app,resources={r"/*":{"origins":"*"}})
-socketio = SocketIO(app, cors_allowed_origins="*")  # Allow any frontend to connect
 
+# controls which frontends can connect (all in this case)
+CORS(app,resources={r"/*":{"origins":"*"}})
+socketio = SocketIO(app, cors_allowed_origins="*") 
+
+# flag that controls the background task for the socketio
 send_data_flag = True
 
+# global variables for cam and bluetooth connections
 cam_port = 0
 com_port = 'COM6'
 bluetooth = serial.Serial(com_port, 9600)
 
+# globals which are updated based on the front end
 speed, steer = 1, 1
+
+# turns the input letters from the ML model into usable commands for the car
 command_map = {'Y':'S','L':'L','C':'R','W':'F','O':'B'}
 
+# data from model training
 mean, std = 128.33125, 15.842568
 model = load_model('../models/final_restricted_letters.keras')
+
 
 def prediction(image):
     prediction = model.predict(image, batch_size=1)
