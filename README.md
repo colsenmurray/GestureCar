@@ -1,9 +1,17 @@
 # gesture-car
-CS307 Final Project to Code a Gesture-Controlled Car
-Final Project Write-up
+This project was created as a capstone for the Algorithms (COSC 307) class at the University of Tennessee. The goal is to create a Gesture-Controlled Car which will respond in real time to hand signals adapted from American Sign Language.
+
+### Group Members:
+- Porter Dosch
+- Ashton Dy
+- Perry Shu
+- Colsen Murray
+-----------------------------------------------------------------------------------------------------
 ## NOTE:
     - Code will not connect properly without a bluetooth conenction to an rc car
 ## Packages and Requirements
+There are two methods. If you are on windows and can run a batch file, simply run `./run.bat` from root. Otherwise, use the following instructions.
+
 ### Front-end(npm):
     1. cd to “/GCar-Frontend” folder and run “npm install” to download all of the packages
         Dependencies can be found in "/GCar-Frontend/package.json" 
